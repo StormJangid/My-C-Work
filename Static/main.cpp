@@ -1,0 +1,96 @@
+#include <iostream>
+using namespace std;
+const int m=50;
+
+class shop
+{
+    int id[m];
+    float price[m];
+    int counter;
+public:
+    void count(void)
+    {
+        counter=0;
+    }
+    void input(void);
+    void display(void);
+    void remove(void);
+    void displayitem(void);
+};
+void shop::input()
+{
+    cout<<"Enter id of "<<counter+1<<" product : ";
+    cin>>id[counter];
+    cout<<"Enter price of "<<counter+1<<" product : ";
+    cin>>price[counter];
+    counter++;
+}
+void shop::displayitem()
+{
+
+    cout<<endl<<"     Id    Price" <<endl;
+    for(int i=0; i<counter; i++)
+    {
+        cout<<"  "<<i<<".  "<<id[i]<<"    "<<price[i]<<endl;
+    }
+}
+void shop::remove()
+{
+    int a;
+    cout<<"Enter product Id : ";
+    cin>>a;
+    for(int i=0; i<counter; i++)
+    {
+        if(id[i]==a)
+            for(int j=i; j<(counter-1); j++)
+            {
+                price[j]=price[j+1];
+                id[j]=id[j+1];
+            }
+    }
+}
+void shop::display()
+{
+    float sum =0;
+    for(int i=0; i<counter; i++)
+    {
+        sum = sum + price[i];
+    }
+    cout<<"Total price is : "<<sum<<endl;
+}
+int main()
+{
+    shop x;
+    x.count();
+    int b;
+    do
+    {
+        cout<<"You can do Following : "<<endl<<"Enter appropriate number : "<<endl;
+        cout<<"1 : Enter a product"<<endl;
+        cout<<"2 : Display all product"<<endl;
+        cout<<"3 : Remove a product"<<endl;
+        cout<<"4 : Display total price"<<endl;
+        cout<<"5 : quit"<<endl;
+        cout<<"What is your option ?"<<endl<<endl;
+        cin>>b;
+
+        switch(b)
+        {
+        case 1 :
+            x.input();
+            break;
+        case 2 :
+            x.displayitem();
+            break;
+        case 3 :
+            x.remove();
+            break;
+        case 4 :
+            x.display();
+            break;
+        case 5 :
+            break;
+        }
+    }
+    while(b!=5);
+}

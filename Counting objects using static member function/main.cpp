@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+class A
+{
+private:
+    static int count;
+public:
+    A()
+    {
+        count++;
+        cout << "Object "<<count<< endl;
+    }
+    static int objcount()
+    {
+        return count;
+    }
+};
+int A::count;
+int main()
+{
+    A a,b,c;
+    int out;
+    out = A::objcount();
+    cout << "Number of Objects:" << out;
+    return 0;
+}
